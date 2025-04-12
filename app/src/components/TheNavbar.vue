@@ -1,6 +1,22 @@
-<script>
-export default {
-  props: ['tagline'],
+<script lang="ts">
+
+import type {PropType} from "vue";
+import {defineComponent} from "vue";
+
+type Restaurants = {
+  name: string,
+  address: string,
+}
+
+export default defineComponent({
+  props: {
+    tagline: {
+      type: String,
+    },
+    restaurants: Object as PropType<Restaurants>
+  },
+
+
   data: () => ({
     navList: [
       {
@@ -17,14 +33,18 @@ export default {
       },
     ],
   }),
-}
+})
 </script>
 
 <template>
   <nav class="navbar has-shadow">
+    <div><p>
+      {{ restaurants.name }} {{ restaurants.address }}
+    </p>
+    </div>
     <div class="navbar-brand">
       <RouterLink to="/" class="navbar-item">
-        <img src="@/assets/to-eat-logo.svg" alt="" width="100" />
+        <img src="@/assets/to-eat-logo.svg" alt="" width="100"/>
       </RouterLink>
     </div>
     <div class="navbar-menu">
